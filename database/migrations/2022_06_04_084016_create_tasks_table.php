@@ -14,11 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id();           
             $table->string('title');
             $table->text('detail');
             $table->boolean('state')->default(false);
+            $table->foreignId('user_id')
+              ->constrained()
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
+              $table->timestamps();
         });
     }
 

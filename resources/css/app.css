@@ -3,7 +3,4 @@
 @tailwind utilities;
 
 
-.coucou{
-    width: 800px;
-    background-color: blue !important;
-}
+@import 'listTask';

@@ -1,3 +1,7 @@
+.tabletask{
+    width: 800px;
+    
+}
 /*
 ! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
 *//*
@@ -1172,12 +1176,6 @@ select {
 }
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-}
-
-
-.coucou{
-    width: 800px;
-    background-color: blue !important;
 }
 
 

@@ -8,8 +8,8 @@
     <div class="container flex justify-center mx-auto mt-6 ">
       <div class="flex flex-col">
           <div class="w-full">
-              <div class="border-b border-gray-200 shadow coucou">
-                <table class="w-full">
+              <div class="border-b border-gray-200 shadow">
+                <table class="tabletask">
                   <thead class="bg-indigo-50">
                     <tr>
                       <th class="px-2 py-2 text-xs text-gray-500">#</th>
