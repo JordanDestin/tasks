@@ -17,6 +17,7 @@ return new class extends Migration
                 $table->id();
                 $table->text('body');
                // $table->nestedSet();
+               
                 $table->foreignId('user_id')
                       ->constrained()
                       ->onDelete('cascade')
