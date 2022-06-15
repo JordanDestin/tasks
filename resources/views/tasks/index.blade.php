@@ -4,7 +4,18 @@
             @lang('Tasks List')
         </h2>
     </x-slot>
-    <div class="test">hello world</div>
+   
+  
+    @if (count($tasks) == 0)
+
+    <div class="border-b border-gray-200 shadow">
+      <p>Aucune nouvelle Tâche</p>
+      <x-button class="ml-3">
+        <a href="{{ route('tasks.create') }}" class="ml-4 text-sm text-white-700 dark:text-gray-500 underline"> {{ __('Create a task') }}</a>
+    </x-button>
+  </div>
+    @else
+    
     <div class="container flex justify-center mx-auto mt-6 ">
       <div class="flex flex-col">
           <div class="w-full">
@@ -46,4 +57,5 @@
               </div>
           </div>
       </div>
+      @endif
 </x-app-layout>
