@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -46,8 +47,12 @@ class TaskController extends Controller
       
         $task->title = $request->title;
         $task->detail = $request->detail;
+        $task->user_id = Auth::id();
         $task->save();
-        return back()->with('message', "La tâche a bien été créée !");
+
+        return redirect()->route('tasks.index');
+        
+        
     }
 
     /**
@@ -56,9 +61,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        //
+        return view('tasks.show', compact('task'));
     }
 
     /**
@@ -103,7 +108,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        $task = Task::find($id);
+
+        $task->delete();
 
         return back();
     }
