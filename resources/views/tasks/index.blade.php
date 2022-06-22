@@ -17,7 +17,7 @@
     @else
     
     <div class="container flex justify-center mx-auto mt-6 ">
-      <div class="flex flex-col">
+      {{-- <div class="flex flex-col">
           <div class="w-full">
               <div class="border-b border-gray-200 shadow">
                 <table class="tabletask">
@@ -40,9 +40,7 @@
                         <x-link-button href="{{ route('tasks.show', $task->id) }}">
                             @lang('Show')
                         </x-link-button>
-                        <x-link-button href="{{ route('tasks.edit', $task->id) }}">
-                            @lang('edit')
-                        </x-link-button>
+                        
                         <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $task->id }}').submit();">
                             @lang('Delete')
                         </x-link-button>
@@ -56,6 +54,37 @@
                 </table>
               </div>
           </div>
-      </div>
+      </div> --}}
+
+
+      <div class="mx-auto container py-20 px-6">
+        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+        
+                    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      @foreach($tasks as $task) 
+                      <div class="rounded">
+                          
+                            <div class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4">
+                                <div>
+                                    <h4 class="text-gray-800 dark:text-gray-100 font-bold mb-3">{{ $task->title }}</h4>
+                                    <p class="text-gray-800 dark:text-gray-100 text-sm">{{ $task->detail }}</p>
+                                </div>
+                                <div>
+                                    <div class="flex items-center justify-between text-gray-800 dark:text-gray-100">
+                                        <p class="text-sm">{{ $task->created_at->format('d M Y') }}</p>
+                                        <x-link-button href="{{ route('tasks.show', $task->id) }}">
+                                          @lang('Show')
+                                      </x-link-button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        @endforeach
+
+                </div>
+                
+</div>
       @endif
+      
 </x-app-layout>
