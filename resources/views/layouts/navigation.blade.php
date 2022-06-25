@@ -23,6 +23,18 @@
                         {{ __('Create a task') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                        {{ __('Categories List') }}
+                    </x-nav-link>
+                </div>
+                <!-- Lien pour la création de catégorie -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                        {{ __('Create a category') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

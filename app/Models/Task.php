@@ -30,4 +30,14 @@ class Task extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    /**
+     * The categories that belong to the Task
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

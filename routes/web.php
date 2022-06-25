@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,13 @@ Route::get('/', function () {
 Route::group(['middleware' =>['auth']], function(){
    
     Route::resource('tasks', TaskController::class);
+    /* Catégorie */
+    Route::get('/categogry', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/categogry/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/categogry', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/categogry/{id}', [CategoryController::class, 'show'])->name('category.show');
+    Route::put('/categogry/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/categogry/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
 /*
