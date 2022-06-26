@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <x-tasks-card>
+
         <!-- Erreurs de validation -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <!-- Message de réussite -->
@@ -19,6 +20,17 @@
             <div>
                 <x-label for="title" :value="__('Title')" />
                 <x-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus />
+            </div>
+
+            <!-- categories -->
+            <div>
+                <x-label for="category" :value="__('Category')" />
+                <x-select class="block mt-1 w-full" id="category" name="category">
+                    @foreach ($categories as $category)
+                
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach    
+                </x-select>
             </div>
             <!-- Détail -->
             <div class="mt-4">

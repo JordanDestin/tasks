@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 use App\Models\Task;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -28,7 +29,11 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $categories = Category::all();
+        
+        return view('tasks.create',[
+            "categories" => $categories
+        ]);
     }
 
     /**
@@ -39,6 +44,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request);
         $data = $request->validate([
             'title' => 'required|max:100',
             'detail' => 'required|max:500',

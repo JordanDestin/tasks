@@ -58,9 +58,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        //dd($id);
+
+        return view('categories.show', compact('category'));
+      //  $category = Category::find($id)->first();
+       // dd($category->name);
+      //  return view('categories.show',[
+        //    "category" => $category
+        //]);
     }
 
     /**
@@ -69,9 +76,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
+      /*  $category = Category::find($id)->first();
+         return view('categories.edit',[
+             "category" => $category
+         ]);*/
     }
 
     /**
@@ -83,7 +94,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|max:100'
+        ]);
+        $category = new Category;
+      
+        $category->name = $request->name;
+        
+        $category->save();
+
+        return redirect()->route('tasks.index'); 
     }
 
     /**

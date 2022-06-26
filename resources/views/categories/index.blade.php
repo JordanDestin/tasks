@@ -36,6 +36,8 @@
                       <tr class="whitespace-nowrap">
                         <td class="px-4 py-4 text-sm text-gray-500">{{ $category->id }}</td>
                         <td class="px-4 py-4">{{ $category->name }}</td>
+
+                
                   
                         <x-link-button href="{{ route('category.show', $category->id) }}">
                             @lang('Show')
