@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use App\Models\Task;
 use App\Models\Category;
+use App\Models\Checklist;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -17,9 +18,12 @@ class TaskController extends Controller
     public function index()
     {
        
-        $tasks = Task::all();
-       // dd($listTask);
-        return view('tasks.index', compact('tasks'));
+      //  $tasks = Task::all();
+        $tasks = Task::with('category')->latest()->get();
+       
+        return view('tasks.index',[
+            "tasks"=>$tasks
+        ]);
     }
 
     /**
@@ -44,8 +48,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-
-        dd($request);
         $data = $request->validate([
             'title' => 'required|max:100',
             'detail' => 'required|max:500',
@@ -55,6 +57,7 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->detail = $request->detail;
         $task->user_id = Auth::id();
+        $task->category_id = $request->category;
         $task->save();
 
         return redirect()->route('tasks.index');   
@@ -68,7 +71,12 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return view('tasks.show', compact('task'));
+       // 
+        $checklists = Checklist::where('task_id',$task->id)->get();
+ 
+        
+
+        return view('tasks.show', compact('task','checklists'));
     }
 
     /**

@@ -39,7 +39,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-      //  dd($request->name);
+
         $data = $request->validate([
             'name' => 'required|max:100'
         ]);
@@ -49,7 +49,7 @@ class CategoryController extends Controller
         
         $category->save();
 
-        return redirect()->route('tasks.index');   
+        return back()->with('La catégories à été ajouté');   
     }
 
     /**

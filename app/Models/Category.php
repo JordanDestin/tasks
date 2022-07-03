@@ -11,13 +11,14 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable =['name'];
+  
     /**
-     * Get the category that owns the Category
+     * Get all of the tasks for the Category
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function task(): BelongsToMany
+    public function tasks(): HasMany
     {
-        return $this->belongsToMany(Task::class);
+        return $this->hasMany(task::class);
     }
 }

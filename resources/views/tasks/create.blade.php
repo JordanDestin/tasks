@@ -24,14 +24,32 @@
 
             <!-- categories -->
             <div>
+                @if (count($categories) == 0)
+                    
+                <div class="flex items-center justify-end mt-4">
+                    <button class="button button-pink mr-3" ><x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                        {{ __('Add a category') }}
+                    </x-nav-link></button>
+                </div>
+                
+                @else         
                 <x-label for="category" :value="__('Category')" />
                 <x-select class="block mt-1 w-full" id="category" name="category">
-                    @foreach ($categories as $category)
-                
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach    
+                    @foreach ($categories as $category)             
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach    
                 </x-select>
+
+                <div class="flex items-center justify-end mt-4">
+                    <button class="button button-pink mr-3" ><x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                        {{ __('Add a category') }}
+                    </x-nav-link></button>
+                </div>
+                @endif 
             </div>
+
+
+
             <!-- Détail -->
             <div class="mt-4">
                 <x-label for="detail" :value="__('Detail')" />
@@ -45,3 +63,20 @@
         </form>
     </x-tasks-card>
 </x-app-layout>
+
+@section('extra-js')
+    <script>
+
+        const form = document.getElementById('category');
+        const submitbutton = document.getElementById('submit');
+        
+        form.addEventListener('submit', function(ev) {
+
+            console.console.log("hello");
+        ev.preventDefault();
+        
+     
+        
+        });
+    </script>
+@endsection

@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('category_task', function(Blueprint $table) {
-            $table->id();
+        Schema::table('tasks', function (Blueprint $table) {
             $table->foreignId('category_id')
-                  ->constrained()
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
-            $table->foreignId('task_id')
-                  ->constrained()
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
+              ->constrained()
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
         });
     }
 
@@ -33,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_task');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropColumn("category_id");
+        });
     }
 };

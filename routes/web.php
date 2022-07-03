@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\ChecklistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +25,9 @@ Route::group(['middleware' =>['auth']], function(){
    
     Route::resource('tasks', TaskController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('task.checklist', ChecklistController::class);
+
+
     /* Catégorie */
   /*  Route::get('/categogry', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/categogry/create', [CategoryController::class, 'create'])->name('category.create');
