@@ -67,10 +67,48 @@
             </div>
           </form> 
 
-          @foreach ($checklists as $checklist)
-          <p>{{ $checklist->name }}</p>
-          
-          @endforeach
+
+
+
+
+
+
+          <div class="border-b border-gray-200 shadow">
+            <table class="w-full">
+         
+              <tbody class="bg-white">
+                @foreach($checklists as $checklist)
+                  <tr class="whitespace-nowrap">
+                  
+                    <td class="px-4 py-4">{{ $checklist->name }}</td>
+
+            
+              
+              
+                    
+                    <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $checklist->id }}').submit();">
+                        @lang('Delete')
+                    </x-link-button>
+                    <form id="destroy{{ $checklist->id }}" action="{{ route('task.checklist.destroy', [$task->id, $checklist->id]) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+
+                        
+                    </form>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+
+
+
+
+
+
+
+
+
 
           <div class="max-w-2xl mx-auto">
 

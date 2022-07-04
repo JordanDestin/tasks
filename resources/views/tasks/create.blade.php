@@ -35,6 +35,7 @@
                 @else         
                 <x-label for="category" :value="__('Category')" />
                 <x-select class="block mt-1 w-full" id="category" name="category">
+                    <option value="">sélectionné une catégorie</option>
                     @foreach ($categories as $category)             
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach    

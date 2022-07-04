@@ -56,9 +56,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id )
     {
-        //
+        
     }
 
     /**
@@ -90,8 +90,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($task, Checklist $checklist)
     {
-        //
+        $checklist->delete();
+        return back();
     }
 }

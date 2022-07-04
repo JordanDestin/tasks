@@ -62,4 +62,5 @@
             </div>
          @endif
     </x-auth-card>
+
 </x-guest-layout>
