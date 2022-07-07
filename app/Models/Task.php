@@ -46,4 +46,14 @@ class Task extends Model
     {
         return $this->hasMany(Checklist::class);
     }
+
+    /**
+     * Get the status te Task
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

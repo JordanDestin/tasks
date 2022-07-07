@@ -22,7 +22,10 @@ return new class extends Migration
               ->constrained()
               ->onDelete('cascade')
               ->onUpdate('cascade');
-              
+             $table->foreignId('status_id')
+              ->constrained()
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
               $table->timestamps();
         });
     }
