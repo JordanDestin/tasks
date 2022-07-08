@@ -42,14 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+   
     /**
-     * Get all of the tasks for the User
+     * The teams that belong to the User
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function tasks(): HasMany
+    public function teams()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsToMany(Team::class);
     }
 
     /**

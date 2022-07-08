@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Category;
 use App\Models\Checklist;
+use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -46,17 +47,19 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Team $team)
     {
         $data = $request->validate([
             'title' => 'required|max:100',
             'detail' => 'required|max:500',
         ]);
+
+        dd($team->id);
         $task = new Task;
       
         $task->title = $request->title;
         $task->detail = $request->detail;
-        $task->user_id = Auth::id();
+        $task->team_id = $team->id;
         $task->status_id = 1;
         $task->category_id = $request->category;
         $task->save();
