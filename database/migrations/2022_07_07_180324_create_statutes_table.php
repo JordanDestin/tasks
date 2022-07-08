@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->foreignId('category_id')
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+        Schema::create('statutes', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -28,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn("category_id");
-        });
+        Schema::dropIfExists('statutes');
     }
 };

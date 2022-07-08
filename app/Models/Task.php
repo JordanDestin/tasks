@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable =['title','detail','state','user_id'];
+    protected $fillable =['title','detail','state','user_id','status_id','category_id'];
     
     /**
      * Get the user that owns the Task
@@ -56,4 +56,6 @@ class Task extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+
 }

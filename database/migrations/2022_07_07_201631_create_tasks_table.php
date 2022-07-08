@@ -17,16 +17,20 @@ return new class extends Migration
             $table->id();           
             $table->string('title');
             $table->text('detail');
-            $table->boolean('state')->default(false);
             $table->foreignId('user_id')
-              ->constrained()
-              ->onDelete('cascade')
-              ->onUpdate('cascade');
-             $table->foreignId('status_id')
-              ->constrained()
-              ->onDelete('cascade')
-              ->onUpdate('cascade');
-              $table->timestamps();
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreignId('status_id')
+                ->constrained('statutes')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+                
+                $table->foreignId('category_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

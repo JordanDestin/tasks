@@ -57,6 +57,7 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->detail = $request->detail;
         $task->user_id = Auth::id();
+        $task->status_id = 1;
         $task->category_id = $request->category;
         $task->save();
 

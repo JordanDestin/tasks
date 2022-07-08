@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Status;
+use App\Models\Statutes;
 
 class StatusSeeder extends Seeder
 {
@@ -21,7 +21,7 @@ class StatusSeeder extends Seeder
                 'name'=>'A faire'    
             ],
             [
-                'name'=>'En cours*'                
+                'name'=>'En cours'                
             ],
             [
                 'name'=>'En attente'                
@@ -32,7 +32,7 @@ class StatusSeeder extends Seeder
         ];
 
         foreach ($statutes as $key => $value) {
-            Status::create($value);
+            Statutes::create($value);
         }
     }
 }
