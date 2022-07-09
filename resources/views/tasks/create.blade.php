@@ -14,7 +14,9 @@
                 {{ session('message') }}
             </div>
         @endif
-        <form action="{{ route('tasks.store') }}" method="post">
+
+        
+        <form action="{{ route('team.task.store',$teamId) }}" method="post">
             @csrf
             <!-- Titre -->
             <div>

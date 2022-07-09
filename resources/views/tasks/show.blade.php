@@ -30,7 +30,7 @@
                 <p>{{ $task->updated_at->format('d/m/Y') }}</p>
               @endif
             </div>
-            <x-link-button href="{{ route('tasks.edit', $task->id) }}">
+            <x-link-button href="{{ route('team.task.edit',[$teamId,$task->id]) }}">
               @lang('Update')
             </x-link-button>
           </div>
@@ -121,42 +121,6 @@
     </div>
     </div>
  
-    <x-tasks-card>
-    
-        <h3 class="font-semibold text-xl text-gray-800">@lang('Title')</h3>
-        <p>{{ $task->title }}</p>
-        <h3 class="font-semibold text-xl text-gray-800 pt-2">@lang('Detail')</h3>
-        <p>{{ $task->detail }}</p>
-        <h3 class="font-semibold text-xl text-gray-800 pt-2">@lang('State')</h3>
-        <p>
-          @if($task->state)
-            La tâche a été accomplie !
-          @else
-            La tâche n'a pas encore été accomplie.
-          @endif
-        </p>
-        <h3 class="font-semibold text-xl text-gray-800 pt-2">@lang('Date creation')</h3>
-        <p>{{ $task->created_at->format('d/m/Y') }}</p>
-        @if($task->created_at != $task->updated_at)
-          <h3 class="font-semibold text-xl text-gray-800 pt-2">@lang('Last update')</h3>
-          <p>{{ $task->updated_at->format('d/m/Y') }}</p>
-        @endif
-
-      <x-link-button href="{{ route('tasks.edit', $task->id) }}">
-        @lang('edit')
-      </x-link-button>
-
-
-      <x-link-button href="#">
-        @lang('comment')
-      </x-link-button>
-
-      <div class="max-w-2xl mx-auto">
-
-        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
-          <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
-      
-      </div>
-    </x-tasks-card>    
+ 
 </x-app-layout>
 

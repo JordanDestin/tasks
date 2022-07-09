@@ -103,7 +103,7 @@ class CategoryController extends Controller
         
         $category->save();
 
-        return redirect()->route('tasks.index'); 
+        return redirect()->route('task.index'); 
     }
 
     /**

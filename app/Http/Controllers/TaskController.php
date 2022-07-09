@@ -16,14 +16,17 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Team $team, Task $task)
     {
-       
-      //  $tasks = Task::all();
-        $tasks = Task::with('category')->latest()->get();
-       
+
+     //   $tasks = Task::all();
+       // $tasks = Task::with('category')->latest()->get();
+
+        $tasks = Task::where('team_id',$team->id)->get();
+       // dd($tasks);
         return view('tasks.index',[
-            "tasks"=>$tasks
+            "tasks"=>$tasks,
+            "teamId"=>$team->id
         ]);
     }
 
@@ -32,12 +35,14 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Team $team)
     {
+       
         $categories = Category::all();
         
         return view('tasks.create',[
-            "categories" => $categories
+            "categories" => $categories,
+            "teamId" => $team->id
         ]);
     }
 
@@ -47,24 +52,26 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Team $team)
+    public function store(Request $request, $team)
     {
+
+       
         $data = $request->validate([
             'title' => 'required|max:100',
             'detail' => 'required|max:500',
         ]);
 
-        dd($team->id);
+       
         $task = new Task;
       
         $task->title = $request->title;
         $task->detail = $request->detail;
-        $task->team_id = $team->id;
+        $task->team_id = $team;
         $task->status_id = 1;
         $task->category_id = $request->category;
         $task->save();
 
-        return redirect()->route('tasks.index');   
+        return redirect()->route('team.task.index',$team);   
     }
 
     /**
@@ -73,14 +80,17 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Team $team, Task $task)
     {
-       // 
+      
         $checklists = Checklist::where('task_id',$task->id)->get();
  
         
 
-        return view('tasks.show', compact('task','checklists'));
+        return view('tasks.show',[
+            'task'=>$task,
+            'teamId'=> $team->id,
+            'checklists' => $checklists]);
     }
 
     /**
@@ -89,10 +99,13 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Team $team,Task $task)
     {
         //dd($task);
-        return view('tasks.edit', compact('task'));
+        return view('tasks.edit',[
+            'task'=>$task,
+            'teamId'=> $team->id
+        ]);
     }
 
     /**
@@ -102,7 +115,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request,Team $team, Task $task)
     {
   
 
@@ -112,7 +125,7 @@ class TaskController extends Controller
         ]);
         $task->title = $request->title;
         $task->detail = $request->detail;
-        $task->state = $request->has('state');
+     
         $task->save();
         return back()->with('message', "La tâche a bien été modifiée !");  
     }

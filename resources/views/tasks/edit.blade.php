@@ -13,7 +13,7 @@
                 {{ session('message') }}
             </div>
         @endif
-        <form action="{{ route('tasks.update', $task->id) }}" method="post">
+        <form action="{{ route('team.task.update',[$teamId,$task->id]) }}" method="post">
             @csrf
             @method('put')
             <!-- Titre -->

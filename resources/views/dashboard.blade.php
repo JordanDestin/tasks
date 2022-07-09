@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-     <!--   <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           
-        </h2>-->
+        </h2>
     </x-slot>
 
     
@@ -10,7 +10,7 @@
     <div id="services" class="section relative pt-20 pb-8 md:pt-16 md:pb-0 bg-white">
         <div class="container xl:max-w-6xl mx-auto px-4">
             <!-- Heading start -->
-            <header class="text-center mx-auto mb-12 lg:px-20">
+            <header class="text-center mx-auto lg:px-20">
                 <h2 class="text-2xl leading-normal mb-2 font-bold text-black">Tâches Manager</h2>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 60" style="margin: 0 auto;height: 35px;" xml:space="preserve">
                     <circle cx="50.1" cy="30.4" r="5" class="stroke-primary" style="fill: transparent;stroke-width: 2;stroke-miterlimit: 10;"></circle>
@@ -21,7 +21,11 @@
             </header>
 
 
-            <x-tasks-card>
+
+            
+
+            <div class="mt-8 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div class="w-full sm:max-w-md mt-6 mb-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <!-- Erreurs de validation -->
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <!-- Message de réussite -->
@@ -44,7 +48,7 @@
                         </x-button>
                     </div>
                 </form>
-            </x-tasks-card>
+            </div>
 
             <!-- End heading -->
             <!-- row -->
@@ -85,6 +89,7 @@
       
             </div>
             <!-- end row -->
+        </div>
         </div>
     </div>
 

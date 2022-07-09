@@ -65,7 +65,8 @@ class TeamsController extends Controller
         $tasks = Task::where('team_id',$team->id)->get();
        
         return view('tasks.index',[
-            "tasks"=>$tasks
+            "tasks"=>$tasks,
+            "teamId"=>$team->id
         ]);
     }
 
