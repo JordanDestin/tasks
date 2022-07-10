@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\DasboardController;
@@ -31,6 +32,7 @@ Route::group(['middleware' =>['auth']], function(){
 
     Route::resource('team.task', TaskController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('task.comment', CommentController::class);
     Route::resource('task.checklist', ChecklistController::class);
     Route::get('/dashboard', [DasboardController::class, 'index'])->name('dashboard');
 

@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\Category;
 use App\Models\Statutes;
 use App\Models\Checklist;
+use App\Models\Comment;
 use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 
@@ -84,12 +85,14 @@ class TaskController extends Controller
     public function show(Team $team, Task $task)
     {    
         $checklists = Checklist::where('task_id',$task->id)->get();
+        $comments = Comment::where('task_id',$task->id)->get();
         $statutes = Statutes::all();
  
         return view('tasks.show',[
             'task'=>$task,
             'teamId'=> $team->id,
             'checklists' => $checklists,
+            'comments' => $comments,
             "statutes" =>$statutes
         ]);
     }

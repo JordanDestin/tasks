@@ -74,22 +74,15 @@
          
               <tbody class="bg-white">
                 @foreach($checklists as $checklist)
-                  <tr class="whitespace-nowrap">
-                  
+                  <tr class="whitespace-nowrap">                 
                     <td class="px-4 py-4">{{ $checklist->name }}</td>
-
-            
-              
-              
-                    
+                  
                     <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $checklist->id }}').submit();">
                         @lang('Delete')
                     </x-link-button>
                     <form id="destroy{{ $checklist->id }}" action="{{ route('task.checklist.destroy', [$task->id, $checklist->id]) }}" method="POST" style="display: none;">
                         @csrf
-                        @method('DELETE')
-
-                        
+                        @method('DELETE')                       
                     </form>
                   </tr>
                 @endforeach
@@ -99,20 +92,40 @@
 
 
 
+          @foreach($comments as $comment)
+                         
+            
+            <textarea id="comment" name="comment" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message...">{{ $comment->comment }}</textarea> 
+            <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $comment->id }}').submit();">
+                @lang('Delete')
+            </x-link-button>
+            <form id="destroy{{ $comment->id }}" action="{{ route('task.checklist.destroy', [$task->id, $comment->id]) }}" method="POST" style="display: none;">
+                @csrf
+                @method('DELETE')                       
+            </form>
+          </tr>
+        @endforeach
 
 
 
+          <form action="{{ route('task.comment.store',$task) }}" method="post">
+            @csrf
+            
+            <<div class="max-w-2xl mx-auto">
 
-
-
-
-          <div class="max-w-2xl mx-auto">
-
-            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
-              <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
-          
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
+                <textarea id="comment" name="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>            
+            </div>
            
-          </div>
+            <div class="flex items-center justify-end mt-4">
+                <x-button class="ml-3">
+                    {{ __('Add') }}
+                </x-button>
+            </div>
+          </form> 
+
+
+          
       </div>
     </div>
     </div>
