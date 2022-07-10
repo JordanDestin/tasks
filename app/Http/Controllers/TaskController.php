@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use App\Models\Task;
 use App\Models\Category;
+use App\Models\Statutes;
 use App\Models\Checklist;
 use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +19,12 @@ class TaskController extends Controller
      */
     public function index(Team $team, Task $task)
     {
-
+        
      //   $tasks = Task::all();
        // $tasks = Task::with('category')->latest()->get();
 
         $tasks = Task::where('team_id',$team->id)->get();
-       // dd($tasks);
+        dd($tasks);
         return view('tasks.index',[
             "tasks"=>$tasks,
             "teamId"=>$team->id
@@ -81,16 +82,16 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team, Task $task)
-    {
-      
+    {    
         $checklists = Checklist::where('task_id',$task->id)->get();
+        $statutes = Statutes::all();
  
-        
-
         return view('tasks.show',[
             'task'=>$task,
             'teamId'=> $team->id,
-            'checklists' => $checklists]);
+            'checklists' => $checklists,
+            "statutes" =>$statutes
+        ]);
     }
 
     /**
@@ -101,10 +102,13 @@ class TaskController extends Controller
      */
     public function edit(Team $team,Task $task)
     {
-        //dd($task);
+        $categories = Category::all();
+        $statutes = Statutes::all();
         return view('tasks.edit',[
             'task'=>$task,
-            'teamId'=> $team->id
+            'teamId'=> $team->id,
+            "categories" => $categories,
+            "statutes" =>$statutes
         ]);
     }
 
@@ -117,7 +121,7 @@ class TaskController extends Controller
      */
     public function update(Request $request,Team $team, Task $task)
     {
-  
+
 
         $data = $request->validate([
             'title' => 'required|max:100',
@@ -125,6 +129,8 @@ class TaskController extends Controller
         ]);
         $task->title = $request->title;
         $task->detail = $request->detail;
+        $task->status_id = $request->status;
+        $task->category_id = $request->category;
      
         $task->save();
         return back()->with('message', "La tâche a bien été modifiée !");  

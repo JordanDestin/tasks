@@ -13,11 +13,7 @@
         <div class="flex w-full items-center justify-between border-b pb-3">
           <div class="flex items-center space-x-3">
             <div class="text-lg font-bold text-slate-700">
-              <p>@if($task->state)
-              La tâche a été accomplie !
-              @else
-                La tâche n'a pas encore été accomplie.
-              @endif
+              <p> {{ $task->status->name }}
               </p>
             </div>
           </div>

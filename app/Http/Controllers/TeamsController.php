@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Statutes;
 use App\Models\User;
 use App\Models\Team;
 use App\Models\Task;
@@ -60,13 +61,14 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
-    {
-
+    {        
         $tasks = Task::where('team_id',$team->id)->get();
+        $statutes = Statutes::all();
        
         return view('tasks.index',[
             "tasks"=>$tasks,
-            "teamId"=>$team->id
+            "teamId"=>$team->id,
+            "statutes" =>$statutes
         ]);
     }
 

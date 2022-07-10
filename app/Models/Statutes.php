@@ -9,14 +9,16 @@ class Statutes extends Model
 {
     use HasFactory;
 
+
+    protected $filable = ['name'];
     /**
      * Get the task that owns the Statutes
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function task()
+    public function tasks()
     {
-        return $this->belongsTo(Task::class);
+        return $this->hasMany(Task::class);
     }
 
 

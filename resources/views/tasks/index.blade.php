@@ -31,6 +31,8 @@
                                     <h4 class="text-gray-800 dark:text-gray-100 font-bold mb-3">{{ $task->title }}</h4>
                                     <p class="text-gray-800 dark:text-gray-100 text-sm">{{ $task->detail }}</p>
                                     <p class="text-gray-800 dark:text-gray-100 text-sm">{{ $task->category->name }}</p>
+                                    <p class="text-gray-800 dark:text-gray-100 text-sm">{{ $task->status->name }}</p>
+                                
                                 </div>
                                 <div>
                                     <div class="flex items-center justify-between text-gray-800 dark:text-gray-100">

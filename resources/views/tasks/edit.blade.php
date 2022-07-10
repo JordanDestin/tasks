@@ -21,6 +21,14 @@
                 <x-label for="title" :value="__('Title')" />
                 <x-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title', $task->title)" required autofocus />
             </div>
+            <!-- Catégorie -->
+            <x-label for="category" :value="__('Category')" />
+                <x-select class="block mt-1 w-full" id="category" name="category">
+                    <option value="{{ $task->category->id }}">{{ $task->category->name }}</option>
+                    @foreach ($categories as $category)             
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach    
+                </x-select>
             <!-- Détail -->
             <div class="mt-4">
                 <x-label for="detail" :value="__('Detail')" />
@@ -28,10 +36,13 @@
             </div>
             <!-- Tâche accomplie -->
             <div class="block mt-4">
-                <label for="state" class="inline-flex items-center">
-                    <input id="state" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="state" @if(old('state', $task->state)) checked @endif>
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Task done') }}</span>
-                </label>
+                <x-label for="State" :value="__('Status')" />
+                <x-select class="block mt-1 w-full" id="status" name="status">
+                    <option value="{{ $task->status->id }}">{{ $task->status->name }}</option>
+                    @foreach ($statutes as $status)             
+                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                    @endforeach    
+                </x-select>
             </div>
             <div class="flex items-center justify-end mt-4">
                 <x-button class="ml-3">
