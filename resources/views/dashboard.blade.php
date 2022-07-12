@@ -5,7 +5,59 @@
         </h2>
     </x-slot>
 
+
     
+
+
+    <div class="px-3 md:lg:xl:px-40   border-t border-b py-20 bg-opacity-10" >
+        <div class="w-full sm:max-w-md mt-6 mb-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg justify-center">
+        <!-- Erreurs de validation -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <!-- Message de réussite -->
+        @if (session()->has('message'))
+            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600">
+                {{ session('message') }}
+            </div>
+        @endif
+        <form action="{{ route('team.store') }}" method="post">
+            @csrf
+            <!-- Non -->
+            <div>
+                <x-label for="name" :value="__('Name')" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            </div>
+        
+            <div class="flex items-center justify-end mt-4">
+                <x-button class="ml-3">
+                    {{ __('Send') }}
+                </x-button>
+            </div>
+        </form>
+    </div>
+        <div class="grid grid-cols- md:lg:xl:grid-cols-4 group bg-white shadow-xl shadow-neutral-100 border ">
+
+            @foreach ($teams as $team)
+            <a href="{{ route('team.show',$team->id) }}">
+            <div class="p-10 flex flex-col items-center text-center group md:lg:xl:border-r md:lg:xl:border-b hover:bg-slate-50 cursor-pointer">
+                <span class="p-5 rounded-full bg-red-500 text-white shadow-lg shadow-red-200"><svg
+                        xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg></span>
+                <p class="text-xl font-medium text-slate-700 mt-3">{{ $team->name }}  {{ $team->id }}</p>
+
+            </div>
+            </a>
+                @endforeach
+
+
+
+        </div>
+
+   
+
+    </div>
 
     <div id="services" class="section relative pt-20 pb-8 md:pt-16 md:pb-0 bg-white">
         <div class="container xl:max-w-6xl mx-auto px-4">
@@ -25,30 +77,7 @@
             
 
             <div class="mt-8 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div class="w-full sm:max-w-md mt-6 mb-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                <!-- Erreurs de validation -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                <!-- Message de réussite -->
-                @if (session()->has('message'))
-                    <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600">
-                        {{ session('message') }}
-                    </div>
-                @endif
-                <form action="{{ route('team.store') }}" method="post">
-                    @csrf
-                    <!-- Non -->
-                    <div>
-                        <x-label for="name" :value="__('Name')" />
-                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-                    </div>
-                
-                    <div class="flex items-center justify-end mt-4">
-                        <x-button class="ml-3">
-                            {{ __('Send') }}
-                        </x-button>
-                    </div>
-                </form>
-            </div>
+            
 
             <!-- End heading -->
             <!-- row -->
@@ -92,6 +121,12 @@
         </div>
         </div>
     </div>
+
+
+
+
+
+    
 
 
 

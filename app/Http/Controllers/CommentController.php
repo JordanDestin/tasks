@@ -38,6 +38,12 @@ class CommentController extends Controller
     public function store(Request $request, Task $task)
     {
 
+
+        dd($request);
+        $data = $request->validate([
+            'comment' => 'required|max:(5)',
+            
+        ]);
         $comment = new Comment();
 
         $comment->comment = $request->comment;

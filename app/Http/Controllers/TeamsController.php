@@ -40,8 +40,7 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-        
-
+    
         $teams = new Team;
         $teams->name = $request->name;
         $teams->save();
@@ -52,6 +51,8 @@ class TeamsController extends Controller
         $user = User::find(Auth::id());
  
         $user->teams()->attach($teams->id);
+
+        return back();
     }
 
     /**
