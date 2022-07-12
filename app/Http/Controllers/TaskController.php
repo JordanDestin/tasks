@@ -25,7 +25,7 @@ class TaskController extends Controller
        // $tasks = Task::with('category')->latest()->get();
 
         $tasks = Task::where('team_id',$team->id)->get();
-        dd($tasks);
+       
         return view('tasks.index',[
             "tasks"=>$tasks,
             "teamId"=>$team->id
