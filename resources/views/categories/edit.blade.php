@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-task-layout :teamid="$teamId">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit a category') }}
@@ -13,7 +13,7 @@
                 {{ session('message') }}
             </div>
         @endif
-        <form action="{{ route('category.update', $category->id) }}" method="post">
+        <form action="{{ route('team.category.update', [$teamId,$category->id]) }}" method="post">
             @csrf
             @method('put')
             <!-- Titre -->

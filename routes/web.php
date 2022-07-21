@@ -31,7 +31,8 @@ Route::group(['middleware' =>['auth']], function(){
   
 
     Route::resource('team.task', TaskController::class);
-    Route::resource('category', CategoryController::class);
+    //Route::resource('category', CategoryController::class);
+    Route::resource('team.category', CategoryController::class);
     Route::resource('task.comment', CommentController::class);
     Route::resource('task.checklist', ChecklistController::class);
     Route::get('/dashboard', [DasboardController::class, 'index'])->name('dashboard');

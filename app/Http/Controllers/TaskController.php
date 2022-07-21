@@ -20,7 +20,7 @@ class TaskController extends Controller
      */
     public function index(Team $team, Task $task)
     {
-        
+       
      //   $tasks = Task::all();
        // $tasks = Task::with('category')->latest()->get();
 

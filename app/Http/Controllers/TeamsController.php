@@ -45,9 +45,6 @@ class TeamsController extends Controller
         $teams->name = $request->name;
         $teams->save();
 
-       // dd($teams->id);
-
-        //$userId = Auth::id();
         $user = User::find(Auth::id());
  
         $user->teams()->attach($teams->id);
@@ -102,8 +99,9 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return back();
     }
 }

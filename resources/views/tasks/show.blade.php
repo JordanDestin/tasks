@@ -1,5 +1,5 @@
-<x-app-layout>
- 
+<x-task-layout :teamid="$teamId">
+
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

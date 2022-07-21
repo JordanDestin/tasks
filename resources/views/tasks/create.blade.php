@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-task-layout :teamid="$teamId">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create a task') }}
@@ -29,7 +29,7 @@
                 @if (count($categories) == 0)
                     
                 <div class="flex items-center justify-end mt-4">
-                    <button class="button button-pink mr-3" ><x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                    <button class="button button-pink mr-3" ><x-nav-link :href="route('team.category.create',$teamId)" :active="request()->routeIs('category.create')">
                         {{ __('Add a category') }}
                     </x-nav-link></button>
                 </div>
@@ -44,7 +44,7 @@
                 </x-select>
 
                 <div class="flex items-center justify-end mt-4">
-                    <button class="button button-pink mr-3" ><x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                    <button class="button button-pink mr-3" ><x-nav-link :href="route('team.category.create',$teamId)" :active="request()->routeIs('category.create')">
                         {{ __('Add a category') }}
                     </x-nav-link></button>
                 </div>
@@ -65,7 +65,7 @@
             </div>
         </form>
     </x-tasks-card>
-</x-app-layout>
+</x-task-layout>
 
 @section('extra-js')
     <script>

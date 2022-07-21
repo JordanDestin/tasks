@@ -21,4 +21,14 @@ class Category extends Model
     {
         return $this->hasMany(task::class);
     }
+
+    /**
+     * The teams that belong to the Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
 }

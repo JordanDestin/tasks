@@ -28,4 +28,14 @@ class Team extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    /**
+     * The categories that belong to the Team
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

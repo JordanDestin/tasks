@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-task-layout :teamid="$teamId">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             @lang('Categories List')
@@ -9,9 +9,9 @@
     @if (count($categories) == 0)
 
     <div class="border-b border-gray-200 shadow">
-      <p>Aucune nouvelle Tâche</p>
+      <p>Aucune Catégories</p>
       <x-button class="ml-3">
-        <a href="{{ route('category.create') }}" class="ml-4 text-sm text-white-700 dark:text-gray-500 underline"> {{ __('Create a task') }}</a>
+        <a href="{{ route('team.category.create',$teamId) }}" class="ml-4 text-sm text-white-700 dark:text-gray-500 underline"> {{ __('Create a task') }}</a>
     </x-button>
   </div>
     @else
@@ -39,14 +39,14 @@
 
                 
                   
-                        <x-link-button href="{{ route('category.show', $category->id) }}">
+                        <x-link-button href="{{ route('team.category.show', [$teamId,$category->id]) }}">
                             @lang('Show')
                         </x-link-button>
                         
                         <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $category->id }}').submit();">
                             @lang('Delete')
                         </x-link-button>
-                        <form id="destroy{{ $category->id }}" action="{{ route('category.destroy', $category->id) }}" method="POST" style="display: none;">
+                        <form id="destroy{{ $category->id }}" action="{{ route('team.category.destroy', [$teamId,$category->id]) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-task-layout :teamid="$teamId">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create a category') }}
@@ -13,7 +13,7 @@
                 {{ session('message') }}
             </div>
         @endif
-        <form action="{{ route('category.store') }}" method="post">
+        <form action="{{ route('team.category.store',$teamId) }}" method="post">
             @csrf
             <!-- Non -->
             <div>
@@ -28,4 +28,4 @@
             </div>
         </form>
     </x-tasks-card>
-</x-app-layout>
+</x-task-layout>

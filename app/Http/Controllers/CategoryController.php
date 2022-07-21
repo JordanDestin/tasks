@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Task;
+use App\Models\Team;
 
 class CategoryController extends Controller
 {
@@ -12,12 +14,16 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Team $team)
     {
-        $categories = Category::all();
+       // $categories = Category::with('teams')->get();
+     //   dd($categories);
   
+     $categories = Team::find($team->id)->categories()->orderBy('name')->get();
+    
         return view('categories.index',[
-            'categories'=> $categories   
+            'categories'=> $categories,
+            "teamId"=>$team->id   
         ]);
     }
 
@@ -26,9 +32,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Team $team)
     {
-        return view('categories.create');
+
+        
+        return view('categories.create',[
+            "teamId"=>$team->id
+        ]);
     }
 
     /**
@@ -37,17 +47,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Team $team,Request $request)
     {
-
         $data = $request->validate([
             'name' => 'required|max:100'
         ]);
         $category = new Category;
-      
         $category->name = $request->name;
-        
         $category->save();
+
+        $teamcateg = Team::find($team->id);
+        $teamcateg->categories()->attach($category->id);
 
         return back()->with('La catégories à été ajouté');   
     }
@@ -58,16 +68,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Team $team,Category $category)
     {
-        //dd($id);
-
-        return view('categories.show', compact('category'));
-      //  $category = Category::find($id)->first();
-       // dd($category->name);
-      //  return view('categories.show',[
-        //    "category" => $category
-        //]);
+        
+        return view('categories.show',[
+            'category'=> $category,
+            "teamId"=>$team->id
+        ]);
+    
     }
 
     /**
@@ -76,13 +84,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Team $team,Category $category)
     {
-        return view('categories.edit', compact('category'));
-      /*  $category = Category::find($id)->first();
-         return view('categories.edit',[
-             "category" => $category
-         ]);*/
+        return view('categories.edit',[
+            'category'=> $category,
+            "teamId"=>$team->id
+        ]);
+   
     }
 
     /**
@@ -112,8 +120,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back();
     }
 }

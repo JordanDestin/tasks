@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-task-layout :teamid="$teamId">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             @lang('Show a category')
@@ -8,7 +8,7 @@
   
     <x-tasks-card>
 
-      <x-link-button href="{{ route('category.edit', $category->id) }}">
+      <x-link-button href="{{ route('team.category.edit', [$teamId,$category->id]) }}">
         @lang('edit')
     </x-link-button>
     
