@@ -51,7 +51,7 @@
                     @include("partials.sidebar")
                     {{--  <div class="w-64 p-6 bg-gray-100 overflow-y-auto">
                         <nav>
-                            <a href="{{ route('dashboard') }}" >
+                            <a href="{{ route('homepage') }}" >
                             <h2 class="font-semibold text-gray-600 uppercase tracking-wide">@lang("Theme List")</h2>
                         </a>
                             <div class="mt-3">

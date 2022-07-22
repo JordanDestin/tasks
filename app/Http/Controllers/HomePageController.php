@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class DasboardController extends Controller
+class HomePageController extends Controller
 {
     public function index()
     {
@@ -15,9 +15,10 @@ class DasboardController extends Controller
         $teamUser = DB::table('team_user')
         ->join('teams','team_id','=','teams.id')
         ->where('user_id',Auth::id())
+
         ->get();
    
-        return view("dashboard",[
+        return view("homepage",[
             'teams'=> $teamUser
         ]);
     }

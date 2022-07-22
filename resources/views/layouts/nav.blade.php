@@ -2,7 +2,7 @@
 <nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
     <!-- logo -->
     <div class="inline-flex">
-        <a href="{{ route('dashboard') }}"><div class="hidden md:block">
+        <a href="{{ route('homepage') }}"><div class="hidden md:block">
             <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
             </div>
             <div class="block md:hidden">

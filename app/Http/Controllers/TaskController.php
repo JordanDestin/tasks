@@ -39,8 +39,7 @@ class TaskController extends Controller
      */
     public function create(Team $team)
     {
-       
-        $categories = Category::all();
+        $categories = Team::find($team->id)->categories()->orderBy('name')->get();
         
         return view('tasks.create',[
             "categories" => $categories,
@@ -56,8 +55,6 @@ class TaskController extends Controller
      */
     public function store(Request $request, $team)
     {
-
-       
         $data = $request->validate([
             'title' => 'required|max:100',
             'detail' => 'required|max:500',

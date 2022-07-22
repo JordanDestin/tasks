@@ -6,7 +6,7 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChecklistController;
-use App\Http\Controllers\DasboardController;
+use App\Http\Controllers\HomePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,25 +26,14 @@ Route::get('/', function () {
 
 Route::group(['middleware' =>['auth']], function(){
    
-    //Route::resource('task', TaskController::class);  
     Route::resource('team', TeamsController::class);
-  
-
     Route::resource('team.task', TaskController::class);
-    //Route::resource('category', CategoryController::class);
     Route::resource('team.category', CategoryController::class);
     Route::resource('task.comment', CommentController::class);
     Route::resource('task.checklist', ChecklistController::class);
-    Route::get('/dashboard', [DasboardController::class, 'index'])->name('dashboard');
+    Route::get('/homepage', [HomePageController::class, 'index'])->name('homepage');
 
 
 });
 
-/*
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::resource('tasks', TaskController::class)->middleware('auth');
-*/
 require __DIR__.'/auth.php';
