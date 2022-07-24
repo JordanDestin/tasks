@@ -59,14 +59,21 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
-    {        
-        $tasks = Task::where('team_id',$team->id)->get();
+    {    
+        $tasks = Task::where('team_id',$team->id)->where('status_id',1)->get();
+        $tasksInProgress = Task::where('team_id',$team->id)->where('status_id',2)->get();
+        $tasksPending = Task::where('team_id',$team->id)->where('status_id',3)->get();
+        $tasksResolved = Task::where('team_id',$team->id)->where('status_id',4)->get();
+
         $statutes = Statutes::all();
        
         return view('tasks.index',[
             "tasks"=>$tasks,
+            "tasksInProgress"=>$tasksInProgress,
+            "tasksPending"=>$tasksPending,
+            "tasksResolved"=>$tasksResolved,
             "teamId"=>$team->id,
-            "statutes" =>$statutes
+           
         ]);
     }
 

@@ -20,16 +20,19 @@ class TaskController extends Controller
      */
     public function index(Team $team, Task $task)
     {
-       
-     //   $tasks = Task::all();
-       // $tasks = Task::with('category')->latest()->get();
-
-        $tasks = Task::where('team_id',$team->id)->get();
-       
-        return view('tasks.index',[
-            "tasks"=>$tasks,
-            "teamId"=>$team->id
-        ]);
+     $tasks = Task::where('team_id',$team->id)->where('status_id',1)->get();
+     $tasksInProgress = Task::where('team_id',$team->id)->where('status_id',2)->get();
+     $tasksPending = Task::where('team_id',$team->id)->where('status_id',3)->get();
+     $tasksResolved = Task::where('team_id',$team->id)->where('status_id',4)->get();
+    
+     return view('tasks.index',[
+         "tasks"=>$tasks,
+         "tasksInProgress"=>$tasksInProgress,
+         "tasksPending"=>$tasksPending,
+         "tasksResolved"=>$tasksResolved,
+         "teamId"=>$team->id,
+        
+     ]);
     }
 
     /**
@@ -56,7 +59,7 @@ class TaskController extends Controller
     public function store(Request $request, $team)
     {
         $data = $request->validate([
-            'title' => 'required|max:100',
+            'title' => ['required','max:100', 'unique:tasks'],
             'detail' => 'required|max:500',
         ]);
 
@@ -67,7 +70,7 @@ class TaskController extends Controller
         $task->detail = $request->detail;
         $task->team_id = $team;
         $task->status_id = 1;
-        $task->category_id = $request->category;
+        $task->category_id = $request->category ? $request->category : 1;
         $task->save();
 
         return redirect()->route('team.task.index',$team);   
@@ -122,7 +125,6 @@ class TaskController extends Controller
     public function update(Request $request,Team $team, Task $task)
     {
 
-
         $data = $request->validate([
             'title' => 'required|max:100',
             'detail' => 'required|max:500',
@@ -131,8 +133,9 @@ class TaskController extends Controller
         $task->detail = $request->detail;
         $task->status_id = $request->status;
         $task->category_id = $request->category;
-     
+        
         $task->save();
+        
         return back()->with('message', "La tâche a bien été modifiée !");  
     }
 

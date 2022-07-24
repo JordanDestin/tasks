@@ -749,6 +749,7 @@
     "Zip / Postal Code": "Code postal",
     "Åland Islands": "Les îles d'Åland",
     "Create a task": "Créer une tâche",
+    "Update task": "Mettre à jour la tâche",
     "Title": "Titre",
     "Detail": "Détail",
     "Send": "Envoyer",
@@ -756,8 +757,11 @@
     "Tasks List": "Liste des tâches",
     "Done": "Effectuée",
     "To do": "A faire",
+    "In progress": "En cours",
+    "Pending": "En attente",
+    "Resolved": "Résolu",
     "Show": "Voir",
     "Create a category": "Créer une catégorie",
-    "Categories List": "Liste des catégories",
+    "Categories lists": "Listes des catégories",
     "Theme List" : "Liste des thèmes"
 }

@@ -58,8 +58,10 @@ class CategoryController extends Controller
 
         $teamcateg = Team::find($team->id);
         $teamcateg->categories()->attach($category->id);
+        
+        return redirect()->route('team.category.index',[$team->id]);
 
-        return back()->with('La catégories à été ajouté');   
+     //   return back()->with('La catégories à été ajouté');   
     }
 
     /**
@@ -120,7 +122,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Team $team, Category $category)
     {
         $category->delete();
         return back();

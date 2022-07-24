@@ -25,6 +25,10 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
+
+
+
+        
         <div class="min-h-screen bg-gray-100">
 
             <!-- Page Heading -->
@@ -51,7 +55,7 @@
                     @include("partials.sidebar")
                     {{--  <div class="w-64 p-6 bg-gray-100 overflow-y-auto">
                         <nav>
-                            <a href="{{ route('homepage') }}" >
+                            <a href="{{ route('dashboard') }}" >
                             <h2 class="font-semibold text-gray-600 uppercase tracking-wide">@lang("Theme List")</h2>
                         </a>
                             <div class="mt-3">
@@ -92,13 +96,6 @@
 
         @yield('javascript')
 
-        <script>
-
-            const url = window.location.href;
-            const toto = url.split("/");
-            console.log(toto[toto.length -1]);
-
-            const testId = toto[toto.length -1]
-        </script>
+ 
     </body>
 </html>
