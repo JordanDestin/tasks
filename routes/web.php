@@ -7,6 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' =>['auth']], function(){
-   
+    Route::resource('profile', ProfileController::class);
     Route::resource('team', TeamsController::class);
     Route::resource('team.task', TaskController::class);
     Route::resource('team.category', CategoryController::class);

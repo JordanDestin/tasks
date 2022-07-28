@@ -24,18 +24,22 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
+    <body
+    class="font-inter antialiased bg-slate-100 text-slate-600"
+    :class="{ 'sidebar-expanded': sidebarExpanded }"
+    x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"
+    x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))"
+>
 
-
-
-        
-        <div class="min-h-screen bg-gray-100">
-
-            <!-- Page Heading -->
-  
-
-            <div class="h-screen flex flex-col">
-                <header class="flex flex-shrink-0">
+    <script>
+        if (localStorage.getItem('sidebar-expanded') == 'true') {
+            document.querySelector('body').classList.add('sidebar-expanded');
+        } else {
+            document.querySelector('body').classList.remove('sidebar-expanded');
+        }
+    </script>
+   
+               {{--  <header class="flex flex-shrink-0">
                     <div class="flex-shrink-0 px-4 py-3 bg-gray-800 w-64">
                         <button class="flex items-center block w-full">
                             <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=144&q=80" alt="" />
@@ -50,8 +54,8 @@
                  
                     </div>
                 </header>
+                --}}
                
-                <div class="flex-1 flex overflow-x-hidden">
                     @include("partials.sidebar")
                     {{--  <div class="w-64 p-6 bg-gray-100 overflow-y-auto">
                         <nav>
@@ -85,14 +89,15 @@
                         </nav>
                     </div>
                     --}}
-                    <main class="bg-gray-200 w-full">
-            
-                        {{ $slot }}
-                    </main>
-                </div>
-            </div>
+                    
+                    <main class="bg-gray-200">
+                        <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
-        </div>
+                        {{ $slot }}
+                        </div>
+                    </main>
+                
+     
 
         @yield('javascript')
 

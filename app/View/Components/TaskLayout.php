@@ -26,7 +26,6 @@ class TaskLayout extends Component
     public function render()
     {
       //  return view("layouts.task");
-
         return view("layouts.task",[
             'idteam'=> $this->teamId
         ]);

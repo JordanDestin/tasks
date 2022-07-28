@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Statutes;
-use App\Models\User;
-use App\Models\Team;
-use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Team;
 
-
-class TeamsController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +15,7 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        //
+        return view('profile.index');
     }
 
     /**
@@ -40,14 +36,7 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-        $teams = new Team;
-        $teams->name = $request->name;
-        $teams->save();
-
-        $user = User::find(Auth::id()); 
-        $user->teams()->attach($teams->id);
-
-        return back();
+        //
     }
 
     /**
@@ -56,23 +45,9 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
-    {    
-        $tasks = Task::where('team_id',$team->id)->where('status_id',1)->get();
-        $tasksInProgress = Task::where('team_id',$team->id)->where('status_id',2)->get();
-        $tasksPending = Task::where('team_id',$team->id)->where('status_id',3)->get();
-        $tasksResolved = Task::where('team_id',$team->id)->where('status_id',4)->get();
-
-        $statutes = Statutes::all();
-       
-        return view('tasks.index',[
-            "tasks"=>$tasks,
-            "tasksInProgress"=>$tasksInProgress,
-            "tasksPending"=>$tasksPending,
-            "tasksResolved"=>$tasksResolved,
-            "teamId"=>$team->id,
-           
-        ]);
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -104,21 +79,8 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy($id)
     {
-        $team->delete();
-        return back();
-    }
-
-    public function requestJoinTeam(Request $request)
-    {
-        // vérifier si la team existe
-        // envoyé la demande de rejoindre la team 
-        
-    }
-
-    public function joinTeam()
-    {
-        // ajouté la team existant
+        //
     }
 }
