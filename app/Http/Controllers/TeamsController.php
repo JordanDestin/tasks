@@ -110,6 +110,13 @@ class TeamsController extends Controller
         return back();
     }
 
+    public function addUserTheme(Team $team , Request $request)
+    {
+        dd($team->id, $request->name);
+    }
+
+/*
+
     public function requestJoinTeam(Request $request)
     {
         // vérifier si la team existe
@@ -120,5 +127,5 @@ class TeamsController extends Controller
     public function joinTeam()
     {
         // ajouté la team existant
-    }
+    }*/
 }

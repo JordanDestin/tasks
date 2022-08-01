@@ -14,12 +14,9 @@ class TaskLayout extends Component
      * @return \Illuminate\View\View
      */
 
-    public $teamId;
-
-
     public function __construct($teamid)
     {
-        //dd($teamid);
+        
         $this->teamId = $teamid;
      
     }

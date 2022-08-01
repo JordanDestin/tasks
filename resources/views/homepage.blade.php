@@ -2,77 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight"></h2>
     </x-slot>
-
-
-    
-    <h2 class="text-lg text-center font-bold m-5">Tâches Manager</h2>
-    {{-- 
-    <div class=" flex justify-center">
-
-            
-        <div class="w-full sm:max-w-md mt-6 mb-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            
-            <!-- Erreurs de validation -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
-            <!-- Message de réussite -->
-            @if (session()->has('message'))
-            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600">
-                {{ session('message') }}
-            </div>
-            @endif
-            <form action="{{ route('team.store') }}" method="post">
-                @csrf
-                <!-- Non -->
-                <div>
-                    <x-label for="name" :value="__('Create Team')" />
-                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-                </div>
-
-                <div class="flex items-center justify-end mt-4">
-                    <x-button class="ml-3">
-                        {{ __('Send') }}
-                    </x-button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
-<table class="rounded-t-lg m-5 w-5/6 mx-auto text-gray-100 bg-gradient-to-l from-indigo-500 to-indigo-800">
-  <tr class="text-left border-b-2 border-indigo-300">
-    <th class="px-4 py-3">#</th>
-    <th class="px-4 py-3">@lang('Title')</th>  
-  </tr>
-
-  @foreach ($teams as $team)
-  <tr class="border-b border-indigo-400">
-   
-    <td class="px-4 py-3">{{ $team->id }}</td>
-    <td class="px-4 py-3">{{ $team->name }}</td>
-    <td class="px-4 py-3"><x-link-button href="{{ route('team.show',$team->id) }}">
-        @lang('Show')
-    </x-link-button>
-    </td>
-    <td class="px-4 py-3">
-        <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $team->id }}').submit();">
-            @lang('Delete')
-        </x-link-button>
-        <form id="destroy{{ $team->id }}" action="{{ route("team.destroy",$team->id) }}" method="POST" style="display: none;">
-            @csrf
-            @method('DELETE')
-        </form>
-    </td>
-   
-  </tr>   @endforeach  
-   
-<!-- each row -->
-
-</table>
-
-
- --}}
-
+    <h1 class="text-lg text-center font-bold m-5">Tâches Manager</h1>
 
 
 <div class="flex justify-center">
@@ -94,24 +24,10 @@
                             <button class="btn bg-indigo-500 hover:bg-indigo-600 text-white"
                             @click.prevent="modalOpen = true"
                                 aria-controls="basic-modal">
-                                <svg class="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
-                                    <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
-                                </svg>
+                                {{__("Create theme")}}
                             </button>
                         
-                            <!-- Modal backdrop -->
-                            <div
-                                class="fixed inset-0 bg-slate-900 bg-opacity-30 z-50 transition-opacity"
-                                x-show="modalOpen"
-                                x-transition:enter="transition ease-out duration-200"
-                                x-transition:enter-start="opacity-0"
-                                x-transition:enter-end="opacity-100"
-                                x-transition:leave="transition ease-out duration-100"
-                                x-transition:leave-start="opacity-100"
-                                x-transition:leave-end="opacity-0"
-                                aria-hidden="true"
-                                x-cloak
-                            ></div>
+                         
                             <!-- Modal dialog -->
                             <div
                                 id="basic-modal"
@@ -135,7 +51,7 @@
                                     <!-- Modal header -->
                                     <div class="px-5 py-3 border-b border-slate-200">
                                         <div class="flex justify-between items-center">
-                                            <div class="font-semibold text-slate-800"><x-label for="name" :value="__('Create Team')" /></div>
+                                            <div class="font-semibold text-slate-800"><x-label for="name" :value="__('Create theme')" /></div>
                                             <button class="text-slate-400 hover:text-slate-500" @click="modalOpen = false">
                                                 <div class="sr-only">Close</div>
                                                 <svg class="w-4 h-4 fill-current">
@@ -144,10 +60,8 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <!-- Modal content -->
-                                
+                                    <!-- Modal content -->                                
                                         <!-- Non -->
-                                        
                                             <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus /> 
                                 
                                     <!-- Modal footer -->
@@ -186,8 +100,16 @@
                                 <div class="flex items-center space-x-4 pl-10 md:pl-0">
                                     <div class="text-sm text-slate-500 italic whitespace-nowrap">{{ $team->created_at }}</div>
                                     <div class="text-xs inline-flex font-medium bg-amber-100 text-amber-600 rounded-full text-center px-2.5 py-1"><x-link-button href="{{ route('team.show',$team->id) }}">
-                                        @lang('Show')
+                                        {{ __('Show') }}
                                     </x-link-button></div>
+
+
+                                    <div class="text-xs inline-flex font-medium bg-amber-100 text-amber-600 rounded-full text-center px-2.5 py-1" x-data="{ modalOpen: false }"><x-link-button  class="btn bg-indigo-500 hover:bg-indigo-600 text-white"
+                                            @click.prevent="modalOpen = true"
+                                            aria-controls="cookies-modal">{{__("Add user")}}
+                                        </x-link-button>
+                                        @include("partials.addUser")
+                                    </div>
                                     
                                     <button class="text-rose-500 hover:text-rose-600 rounded-full"
                                     onclick="event.preventDefault(); document.getElementById('destroy{{ $team->id }}').submit();">

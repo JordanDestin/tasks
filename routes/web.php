@@ -28,6 +28,7 @@ Route::get('/', function () {
 Route::group(['middleware' =>['auth']], function(){
     Route::resource('profile', ProfileController::class);
     Route::resource('team', TeamsController::class);
+    Route::post('/addusertheme/{team}',[TeamsController::class,'addUserTheme'])->name('addUserTheme');
     Route::resource('team.task', TaskController::class);
     Route::resource('team.category', CategoryController::class);
     Route::resource('task.comment', CommentController::class);

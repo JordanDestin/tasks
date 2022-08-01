@@ -764,5 +764,11 @@
     "Create a category": "Créer une catégorie",
     "Categories lists": "Listes des catégories",
     "Theme List" : "Liste des thèmes",
-    "My account" : "Mon compte"
+    "My account" : "Mon compte",
+    "Don’t you have an account?" : "Vous n'avez pas de compte ?",
+    "Have an account?" : "Avoir un compte?",
+    "Sign in" : "S'identifier",
+    "Create theme" : "Créer un theme",
+    "Add user" : "Ajouter un utilisateur"
+    
 }
